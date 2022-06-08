@@ -1,7 +1,7 @@
 {
   "name": "myapp",
   "version": "0.1.0",
-  "homepage": "https://github.com/kurusaki-hamza/React-To-do-App",
+  "homepage": "https://kurusaki-hamza.github.io/React-To-do-App",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
