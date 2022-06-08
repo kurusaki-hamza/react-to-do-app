@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/kurusaki-hamza/React-To-do-App/static/css/main.639c2437.css",
+    "main.js": "/kurusaki-hamza/React-To-do-App/static/js/main.671bd821.js",
+    "index.html": "/kurusaki-hamza/React-To-do-App/index.html",
+    "main.639c2437.css.map": "/kurusaki-hamza/React-To-do-App/static/css/main.639c2437.css.map",
+    "main.671bd821.js.map": "/kurusaki-hamza/React-To-do-App/static/js/main.671bd821.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.639c2437.css",
+    "static/js/main.671bd821.js"
+  ]
+}
