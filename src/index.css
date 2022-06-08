@@ -1,13 +1,562 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+body {
+  background-color: rgb(105, 68, 15);
+  width: 100%;
+  height: 100vh;
+}
+.root {
+  height: 100%;
+}
+.App {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0 30% 0 30%;
+  background-color: #c5710e;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  background-color: #131516;
+  height: 100%;
+}
+
+.todoComps {
+  padding: 2%;
+  min-height: 100vh;
+  position: relative;
+}
+
+.todoForm {
+  display: flex;
+  height: 36px;
+  margin-bottom: 13px;
+}
+
+.todoForm form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todoForm form input[type="text"] {
+  width: 77%;
+  height: 100%;
+  background-color: #47e0c5;
+  color: black;
+  border-radius: 4px;
+  font-weight: bold;
+  padding: 5px;
+  border: none;
+}
+
+.todoForm form input[type="text"]:focus {
+  outline: 2px solid #0ac9ca;
+}
+
+.todoForm form input[type="submit"] {
+  width: 20%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  top: 1px;
+  border-radius: 4px;
+  border: 1px solid black;
+  color: #ffa601;
+  font-weight: bolder;
+  background-color: #4500ff;
+}
+
+.todoItem {
+  display: flex;
+  width: 100%;
+  height: 49px;
+  position: relative;
+  margin-top: 10px;
+  padding: 3.5%;
+  box-shadow: 0 0 2px 3px black;
+  border: 1px solid #2f2020;
+}
+
+.checkbox {
+  width: 10%;
+  margin: 0 2% 0 0px;
+  position: relative;
+}
+
+input.hiddenCheckbox {
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  z-index: 2;
+  width: 100%;
+  position: absolute;
+  height: 100%;
+}
+
+.styledCheckBox {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 2px;
+  left: 8px;
+  border-radius: 2px;
+  background-color: #b5a4a4;
+}
+
+.todoItemContent {
+  width: 74%;
+  color: #ffa600;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.todoItemIcons {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  left: 84%;
+  top: 30%;
+  width: 13%;
+}
+
+input.hiddenCheckbox[type="checkbox"]:checked + .styledCheckBox::after {
+  font-family: "FontAwesome";
+  content: "\f00c";
+  color: #2200ff;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 21px;
+}
+
+.fa-pencil {
+  color: rgb(49, 128, 0);
+  cursor: pointer;
+}
+.fa-trash-can {
+  color: red;
+  cursor: pointer;
+}
+
+.popUp {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #00000096;
+}
+
+.popUp form {
+  position: absolute;
+  background-color: #241a4c;
+  height: 28%;
+  width: 90%;
+  border-radius: 7px;
+  left: 6%;
+  box-shadow: 0 0 2px 4px black;
+  top: 34%;
+}
+
+input.popUpIpt {
+  width: 90%;
+  height: 26%;
+  position: relative;
+  top: 22%;
+  left: 5%;
+  border-radius: 4px;
+  background-color: blue;
+  border: none;
+  font-weight: bolder;
+  box-shadow: 0 0 2px 1px black;
+  padding: 4px;
+}
+
+input.popUpIpt:focus {
+  outline: 1px solid #00b7ff;
+}
+
+button.popUpSave {
+  position: relative;
+  width: 30%;
+  top: 32%;
+  cursor: pointer;
+  left: 52%;
+  box-shadow: 0 0 2px 2px black;
+  background: red;
+  border: none;
+  color: orange;
+  font-weight: bolder;
+  border-radius: 3px;
+  height: 23%;
+}
+
+button.popUpCancel {
+  position: relative;
+  width: 30%;
+  cursor: pointer;
+  top: 32%;
+  left: -45px;
+  box-shadow: 0 0 2px 2px black;
+  background: #32ff00;
+  border: none;
+  color: #6013be;
+  font-weight: bolder;
+  border-radius: 3px;
+  height: 23%;
+}
+
+.noTasks {
+  height: 33px;
+  padding: 7px;
+  font-size: 21px;
+  font-weight: bold;
+  color: orange;
+  text-align: center;
+}
+
+.popUpError {
+  width: 78%;
+  border-radius: 4px;
+  height: 46px;
+  position: absolute;
+  transition: 0.8s;
+  padding: 12px 0 0 0;
+  font-weight: bold;
+  color: red;
+  box-shadow: 0 0 2px 2px black;
+  top: 57%;
+  left: 11%;
+  background: #002680;
+  font-size: 19px;
+  text-align: center;
+}
+
+
+.popUpError.up {
+  top: 40%;
+}
+
+/* Galaxy S5 */
+@media (min-width:280px) {
+  .App {
+    padding: 0;
+  }
+  .todoForm {
+    margin: 21px 21px 0;
+    height: 111px;
+  }
+  .todoForm form {
+    flex-wrap: wrap;
+  }
+  .todoForm form input[type="text"] {
+    width: 100%;
+    height: 43%;
+  }
+  .todoForm form input[type="submit"] {
+    width: 27%;
+    height: 35%;
+    margin: -15px 0 0 0;
+    top: 8px;
+    position: relative;
+  }
+  .todoItems {
+    position: relative;
+    top: 0px;
+  }
+  .todoItemIcons {
+    width: 15%;
+    left: 83%;
+  }
+  .todoItemContent {
+    padding-top: 4px;
+    font-size: 15px;
+  }
+  .popUp form {
+    height: 18%;
+    top: 21%;
+  }
+}
+/* Samsung Galaxy S8+ */
+@media (min-width: 360px) and (min-height:740px) {
+  .popUp form {
+    height: 20%;
+    top: 36%;
+  }
+}
+/* iPhone SE */
+@media (min-width: 375px) {
+  .popUp form {
+    height: 20%;
+    top: 29%;
+  }
+}
+/* Samsung Galaxy S20 */
+@media (min-width: 412px) {
+  .popUp form {
+    height: 18%;
+    top: 36%;
+  }
+}
+/* iPad Mini */
+@media (min-width: 768px)  {
+  .noTasks {
+    font-size: 41px;
+  }
+  .todoItem {
+    height: 82px;
+    margin-top: 14px;
+    padding: 2.5%;
+  }
+  .styledCheckBox {
+    width: 65%;
+    height: 93%;
+    top: 6px;
+    border-radius: 10px;
+  }
+  input.hiddenCheckbox[type="checkbox"]:checked + .styledCheckBox::after {
+    top: -3px;
+    left: 0px;
+    font-size: 50px;
+  }
+  .todoItemContent {
+    padding-top: 8px;
+    font-size: 33px;
+  }
+  .todoItemIcons {
+    width: 13%;
+    left: 84%;
+  }
+  .fa-pencil {
+    font-size: 38px;
+  }
+  .fa-trash-can {
+    font-size: 37px;
+  }
+  .todoForm {
+    height: 138px;
+    margin: 15px;
+  }
+  .todoForm form input[type="text"] {
+    height: 46%;
+    width: 100%;
+    padding: 13px;
+    font-size: 34px;
+  }
+  .todoForm form input[type="submit"] {
+    height: 40%;
+    font-size: 28px;
+  }
+  .popUp form {
+    top: 36%;
+    height: 22%;
+  }
+  input.popUpIpt {
+    width: 90%;
+    top: 20%;
+    border-radius: 10px;
+    padding: 17px;
+    font-size: 35px;
+  }
+  button.popUpSave {
+    border-radius: 10px;
+    font-size: 33px;
+  }
+  button.popUpCancel {
+    left: -92px;
+    top: 32%;
+    border-radius: 10px;
+    font-size: 33px;
+  }
+  .popUpError {
+    border-radius: 8px;
+    height: 82px;
+    padding: 18px 0 0 0;
+    font-size: 35px;
+  }
+}
+/* My screen */
+@media (min-width:924px)  {
+  .App {
+    padding-inline: 29%;
+  }
+  .todoForm form input[type="submit"] {
+    height: 100%;
+    font-size: 21px;
+    width: 21%;
+    top: 42%;
+  }
+  .todoItem {
+    height: 49px;
+    margin-top: 10px;
+    padding: 3.5%;
+  }
+  .styledCheckBox {
+    width: 18px;
+    height: 18px;
+    top: 0px;
+    left: 1px;
+    border-radius: 3px;
+  }
+  input.hiddenCheckbox[type="checkbox"]:checked + .styledCheckBox::after {
+    top: 0;
+    left: 0px;
+    font-size: 21px;
+  }
+  .todoItemContent {
+    font-size: 18px;
+    padding-top: 0px;
+  }
+  .todoItemIcons {
+    width: 13%;
+    left: 85%;
+  }
+  .fa-pencil {
+    font-size: 21px;
+  }
+  .fa-trash-can {
+    font-size: 21px;
+  }
+  .todoForm {
+    height: 36px;
+    margin: 13px;
+  }
+  .todoForm form input[type="text"] {
+    height: 100%;
+    width: 77%;
+    padding: 5px;
+    font-size: 23px;
+  }
+  .todoForm form input[type="submit"] {
+    height: 100%;
+    font-size: 21px;
+  }
+  .popUp form {
+    top: 39%;
+    height: 27%;
+  }
+  input.popUpIpt {
+    top: 22%;
+    border-radius: 5px;
+    padding: 7px;
+    font-size: 21px;
+  }
+  button.popUpSave {
+    border-radius: 4px;
+    font-size: 25px;
+    top: 31%;
+  }
+  button.popUpCancel {
+    left: -48px;
+    top: 31%;
+    border-radius: 4px;
+    font-size: 25px;
+  }
+  .popUpError {
+    border-radius: 8px;
+    height: 82px;
+    padding: 18px 0 0 0;
+    font-size: 35px;
+  }
+  .popUpError.up {
+    top: 26%;
+    font-size: 25px;
+    padding: 12px;
+  }
+}
+/* Nest Hub */
+@media (min-width: 1024px) {
+  .App {
+    padding-inline: 29%;
+  }
+  .todoForm form input[type="submit"] {
+    height: 100%;
+    font-size: 21px;
+    width: 21%;
+    top: 42%;
+  }
+  .popUp form {
+    top: 32%;
+  }
+}
+/* Nest Hub Max */
+@media (min-width: 1280px) {
+  .App {
+    padding: 0 26%;
+  }
+  .todoItem {
+    height: 57px;
+    margin-top: 13px;
+    padding: 2.5%;
+  }
+  .styledCheckBox {
+    width: 29px;
+    height: 28px;
+    border-radius: 4px;
+  }
+  input.hiddenCheckbox[type="checkbox"]:checked + .styledCheckBox::after {
+    font-size: 31px;
+  }
+  .todoItemContent {
+    font-size: 26px;
+  }
+
+  .fa-pencil {
+    font-size: 26px;
+  }
+  .fa-trash-can {
+    font-size: 26px;
+  }
+  .todoForm {
+    height: 49px;
+    margin: 21px 13px;
+  }
+  .todoForm form input[type="text"] {
+    height: 100%;
+    width: 77%;
+    padding: 5px;
+    font-size: 23px;
+  }
+  .todoForm form input[type="submit"] {
+    height: 100%;
+    width: 20%;
+    top: 30%;
+    font-size: 25px;
+  }
+  .popUp form {
+    top: 32%;
+  }
+  input.popUpIpt {
+    top: 22%;
+    border-radius: 5px;
+    padding: 7px;
+    font-size: 21px;
+  }
+  button.popUpSave {
+    border-radius: 4px;
+    font-size: 25px;
+    top: 31%;
+  }
+  button.popUpCancel {
+    left: -62px;
+    top: 31%;
+    border-radius: 4px;
+    font-size: 25px;
+  }
+  .popUpError {
+    border-radius: 8px;
+    height: 82px;
+    padding: 18px 0 0 0;
+    font-size: 35px;
+  }
+  .popUpError.up {
+    top: 36%;
+    font-size: 32px;
+    padding: 22px;
+  }
 }
